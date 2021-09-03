@@ -7,12 +7,13 @@ module.exports = (sequelize) => {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        descriptions: {
+        description: {
             type: DataTypes.STRING,
         },
     });
@@ -21,6 +22,7 @@ module.exports = (sequelize) => {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         question_type: {
             type: DataTypes.STRING,
@@ -28,6 +30,7 @@ module.exports = (sequelize) => {
         },
         text: {
             type: DataTypes.STRING,
+            allowNull: false,
         }
     });
 
@@ -35,6 +38,7 @@ module.exports = (sequelize) => {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         option: {
             type: DataTypes.STRING,

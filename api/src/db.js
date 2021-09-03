@@ -37,8 +37,8 @@ const { Form, Question, Option } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Question.belongsToMany(Option, {through: 'Questio_option'})
-Option.belongsToMany(Question, {through: 'Questio_option'})
+Question.belongsToMany(Option, {through: 'Question_option'})
+Option.belongsToMany(Question, {through: 'Question_option'})
 Form.belongsToMany(Question, {through: 'Form_question'})
 Question.belongsToMany(Form, {through: 'Form_question'})
 
