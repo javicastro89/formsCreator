@@ -2,9 +2,8 @@ const router = require('express').Router()
 const { Form, Question, Option } = require('../db');
 
 
-
+// GET the FORM with its id
 router.get('/forms/:id', async (req, res) => {
-
 
     const form = await Form.findByPk(req.params.id, {
         include: { all: true, nested: true }
@@ -34,7 +33,6 @@ router.get('/forms/:id', async (req, res) => {
                 response.questions[i].options.unshift(
                     form.Questions[i].Options[j].dataValues.option
                 )
-
             }
         }
     }
@@ -43,7 +41,7 @@ router.get('/forms/:id', async (req, res) => {
 
 })
 
-
+//POST to save a FORM in DB
 router.post('/forms', async (req, res) => {
     const { form } = req.body
 
@@ -78,18 +76,13 @@ router.post('/forms', async (req, res) => {
             }
         }
 
-
         let lastForm = await Form.findAll()
-        // console.log(lastForm[0].Questions[0].Options[0])
-        // console.log(lastForm[0].Questions[0].Options[1])
         return res.json({ message: 'Form created', formId: lastForm[lastForm.length - 1].dataValues.id })
+
     } catch (error) {
-        console.log(error)
+        res.status(500).json({message: 'Problem saving FORM in DB', error: error})
+
     }
-
-
 })
 
-
 module.exports = router;
-
