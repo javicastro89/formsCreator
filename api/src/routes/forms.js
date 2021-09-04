@@ -13,23 +13,41 @@ router.get('/forms/:id', async (req, res) => {
         if (form === null) {
             return res.status(400).json({message: 'Form does not exist'})
         }
-        
-        console.log(form.dataValues.name)
-        console.log(form.dataValues.description)
-        form.Questions.map(e => {console.log(e.dataValues.question_type)
-        console.log(e.dataValues.text)}
-        )
-        return res.send()
 
+        const response = {
+            id: form.dataValues.id,
+            name: form.dataValues.name,
+            description: form.dataValues.description,
+            questions: []
+        }
+
+        for (let i = 0; i < form.Questions.length; i++){
+            response.questions.push({
+                id: form.Questions[i].dataValues.id,
+                question_type: form.Questions[i].dataValues.question_type,
+                text: form.Questions[i].dataValues.text,
+                options: []
+            })
+
+            for (let j = 0; j < form.Questions[i].Options.length; j++) {
+
+                response.questions[i].options.unshift(
+                    form.Questions[i].Options[j].dataValues.option
+                )
+                
+            }
+
+        }
+       
+        return res.json(response)
 
 })
 
 
 router.post('/forms', async (req, res) => {
     const {form} = req.body
-    console.log('aca noo ehh')
+
     try {
-        console.log('aca noo ehh')
 
     let newForm = await Form.create({        
             name: form.name,
