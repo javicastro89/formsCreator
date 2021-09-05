@@ -1,10 +1,10 @@
-import Create from "./components/create/create";
+import Display from "./display/display";
 
 
 function App() {
   return (
     <div className="App">
-     <Create/>
+     <Display/>
     </div>
   );
 }

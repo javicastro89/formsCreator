@@ -1,32 +1,32 @@
-import { useState } from "react";
+// import { useState } from "react";
 import QuestionType from "../questionType/questionType";
 
-export default function Create() {
-  const [form, setForm] = useState({
-    name: "",
-    description: "",
-    questions: [],
-  });
-
-  const [question, setQuestion] = useState({
-    question_type: "",
-    text: "",
-    options: [],
-  });
-  const [options, setOptions] = useState({ 0: "" });
-  const [questionQuantity, setQuestionQuantity] = useState(["question1"]);
-  const [questionType, setQuestionType] = useState("");
+export default function Create({form, setForm}) {
+  
+  // const [form, setForm] = useState({
+  //   name: "",
+  //   description: "",
+  //   questions: [],
+  // });
 
   const handleSelect = (event) => {
-    setQuestionType(event.target.value);
-    setQuestion({
-      ...question,
-      [event.target.name]: event.target.value
-    })
+    console.log('dentro de select',form.questions[event.target.id][event.target.name])
+    form.questions[event.target.id][event.target.name] = event.target.value
+    console.log('La form questions', form.questions)
+    setForm(() => {return {
+      ...form,
+      questions: form.questions
+    }})
   };
 
   const handleQuestions = (event) => {
     event.preventDefault();
+
+    setForm({
+      ...form,
+      questions: [...form.questions, {question_type: "", text: "", options: [],}]
+    })
+    
   };
 
   const handleForm = (event) => {
@@ -35,7 +35,8 @@ export default function Create() {
       [event.target.name]: event.target.value
     })
   }
-
+  console.log(form.questions)
+  console.log(form.questions.length)
   return (
     <div>
       <h1>Creación de encuestas</h1>
@@ -61,10 +62,10 @@ export default function Create() {
           />
         </label>
 
-        {questionQuantity.map((element) => {
+        {form.questions.map((element, index) => {
           return (
-            <div key={element}>
-              <select name="question_type" id="tipo" onChange={handleSelect}>
+            <div key={index}>
+              <select name="question_type" id={index} onChange={handleSelect}>
                 <option value="" defaultValue hidden>
                   Seleccione tipo de pregunta
                 </option>
@@ -72,24 +73,31 @@ export default function Create() {
                 <option value="ss">Selección simpe</option>
                 <option value="text">Texto</option>
               </select>
-              <label htmlFor="pregunta">
+              <label htmlFor={index}>
                 Pregunta
                 <input
                   type="text"
                   name="text"
-                  id="pregunta"
+                  id={index}
                   placeholder="Pregunta"
                   onChange={handleSelect}
                 />
               </label>
-              <QuestionType
-                type={questionType}
-                setOptions={setOptions}
-                options={options}
-              />
+              
+                <QuestionType
+                  type={element.question_type}
+                  index={index}
+                  optionsQuestion={element.options}
+                  setForm={setForm}
+                  form={form}
+                  
+                />
+                
+                
             </div>
           );
         })}
+       
         <button onClick={handleQuestions}>Agregar pregunta</button>
       </form>
     </div>
