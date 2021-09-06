@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Create from '../components/create/create'
-import Form from '../components/form/form'
+import Create from '../create/create.jsx'
+import Form from '../form/form.jsx'
 import './display.css'
 
 export default function Display() {

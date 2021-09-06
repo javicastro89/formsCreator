@@ -27,7 +27,8 @@ router.get('/forms/:id', async (req, res) => {
             text: form.Questions[i].dataValues.text,
             options: []
         })
-        if (form.Questions[i].dataValues.question_type.toLoweCase() !== 'texto') {
+        
+        if (form.Questions[i].dataValues.question_type.toLowerCase() !== 'text') {
             for (let j = 0; j < form.Questions[i].Options.length; j++) {
 
                 response.questions[i].options.unshift(
@@ -44,7 +45,7 @@ router.get('/forms/:id', async (req, res) => {
 //POST to save a FORM in DB
 router.post('/forms', async (req, res) => {
     const { form } = req.body
-
+    console.log(form)
     try {
 
         let newForm = await Form.create({
