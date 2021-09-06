@@ -9,8 +9,8 @@ export default function Form({ form }) {
       <p>{form.description || "Descripción"}</p>
       </header>
       <div className='questionDisplay'>
-      {form.questions?.map((element) => (
-        <div className='width'>
+      {form.questions?.map((element, index) => (
+        <div key={index} className='width'>
             {element !== null &&
             <div className='divider'>
             <div className='fullQuestion' >
@@ -18,7 +18,7 @@ export default function Form({ form }) {
           {element.question_type === "sm" ? (
             <div className='inputs'>
               {element.options.map((option, index) => (
-                <div >
+                <div key={index}>
                   <label htmlFor={index}>
                     <input type="checkbox" name={element.text} id={index} />
                     {option}
@@ -29,7 +29,7 @@ export default function Form({ form }) {
           ) : element.question_type === "ss" ? (
             <div>
               {element.options.map((option, index) => (
-                <div>
+                <div key={index}>
                   <label htmlFor={index}>
                     <input type="radio" name={element.text} id={index} />
                     {option}
