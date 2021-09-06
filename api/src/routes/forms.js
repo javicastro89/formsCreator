@@ -46,6 +46,8 @@ router.get('/forms/:id', async (req, res) => {
 router.post('/forms', async (req, res) => {
     const { form } = req.body
     console.log(form)
+    if(!form || !form.name || !form.description || form.questions.length < 1) return res.status(400).json({error: 'Faltan campos o preguntas en el formulario'})
+    
     try {
 
         let newForm = await Form.create({
