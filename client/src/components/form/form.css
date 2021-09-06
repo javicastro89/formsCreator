@@ -1,0 +1,74 @@
+.formDisplay {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formDisplay .width {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+.formDisplay header {
+    background-color: var(--primary-color-dark);
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+}
+
+.formDisplay p, .formDisplay label, .formDisplay h4 {
+    color: var(--text-color);
+}
+
+.formDisplay .questionDisplay {
+    background-color: var(--container);
+    padding: 10px;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.formDisplay .divider {
+    border: 1px solid var(--border);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.formDisplay .fullQuestion {
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+.formDisplay textarea{
+    background-color: var(--primary-color-dark);
+    color: var(--text-color);
+    resize: none;
+    width: 100%;
+    height: 50px;
+    border-color: var(--border);
+    border-radius: 5px;
+}
+
+.formDisplay textarea:focus{
+    outline: none;
+    border-color: var(--text-color);
+}

@@ -1,17 +1,24 @@
 import React from "react";
+import './form.css'
 
 export default function Form({ form }) {
   return (
-    <div>
+    <div className='formDisplay'>
+        <header>
       <h1>{form.name || "Título"}</h1>
-      <h4>{form.description || "Descripción"}</h4>
+      <p>{form.description || "Descripción"}</p>
+      </header>
+      <div className='questionDisplay'>
       {form.questions?.map((element) => (
-        <div>
+        <div className='width'>
+            {element !== null &&
+            <div className='divider'>
+            <div className='fullQuestion' >
           <h4>{element.text}</h4>
           {element.question_type === "sm" ? (
-            <div>
+            <div className='inputs'>
               {element.options.map((option, index) => (
-                <div>
+                <div >
                   <label htmlFor={index}>
                     <input type="checkbox" name={element.text} id={index} />
                     {option}
@@ -31,8 +38,12 @@ export default function Form({ form }) {
               ))}
             </div>
           ) : element.question_type === 'text' ? <textarea placeholder='Respuesta...' /> : null}
+          </div>
+          </div>
+              }
         </div>
       ))}
+      </div>
     </div>
   );
 }

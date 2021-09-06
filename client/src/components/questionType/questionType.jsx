@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
-// import {v4} from 'uuid'
+import './questionType.css'
+import {MdAddCircle} from 'react-icons/md'
 
 export default function QuestionType({type, index, setForm, form}) {
     
@@ -22,9 +23,11 @@ export default function QuestionType({type, index, setForm, form}) {
 
     const handleOptions = (event) => {
         event.preventDefault()
-        
-        if (event.target.value === 'quit') {
-            
+        console.log('Llegamos acá', event.target.value)
+        console.log('Llegamos acá', event.target.name)
+        console.log('Llegamos acá', event.target.id)
+        if (event.target.value === 'quit' || event.target.id === 'quit') {
+            console.log('Llegmos por acá, no?')
             delete form.questions[index].options[event.target.name]
             delete options[event.target.name]
 
@@ -39,7 +42,7 @@ export default function QuestionType({type, index, setForm, form}) {
             })
             setOptions(newObject)
             
-        } else {
+        } else if (event.target.value === 'add') {
 
             setOptions({
                 ...options, 
@@ -54,15 +57,15 @@ export default function QuestionType({type, index, setForm, form}) {
     
     if (type === 'ss' || type === 'sm'){
         return (
-            <div>
+            <div className='questionType'>
                 {Object.values(options).map((element, index) => 
-                <div key={index}>
-                    <label htmlFor='option'>Opción {index+1}</label>
-                    <input type='text' name={index} value={options[index]} id='option' onChange={handleChange} />
-                    <button name={index} value='quit' onClick={handleOptions}>-</button>
+                <div className='options' key={index}>
+                    <input type='text' name={index} value={options[index]} id={index} onChange={handleChange} placeholder={`Opción ${index+1}`} />
+                    <button className='bttn-' name={index} value='quit' id='quit' onClick={handleOptions}>x</button>
                 </div>
                 )}
-                <input type='submit' value='Agregar opción' onClick={handleOptions} />
+                {/* <input className='agregarOpción' type='submit' value='Agregar opción' onClick={handleOptions} /> */}
+                <button value='add' className='agregarOpción' onClick={handleOptions}><MdAddCircle/>Agregar opción</button>
             </div>
         )
     } 

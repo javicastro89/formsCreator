@@ -1,11 +1,13 @@
-// import { useState } from "react";
-import QuestionType from "../questionType/questionType";
+// import { useState } from 'react';
+import QuestionType from '../questionType/questionType';
+import {MdAddCircle} from 'react-icons/md'
+import './create.css'
 
 export default function Create({form, setForm}) {
   
   // const [form, setForm] = useState({
-  //   name: "",
-  //   description: "",
+  //   name: '',
+  //   description: '',
   //   questions: [],
   // });
 
@@ -24,7 +26,7 @@ export default function Create({form, setForm}) {
 
     setForm({
       ...form,
-      questions: [...form.questions, {question_type: "", text: "", options: [],}]
+      questions: [...form.questions, {question_type: '', text: '', options: [],}]
     })
     
   };
@@ -35,54 +37,64 @@ export default function Create({form, setForm}) {
       [event.target.name]: event.target.value
     })
   }
-  console.log(form.questions)
-  console.log(form.questions.length)
-  return (
-    <div>
-      <h1>Creación de encuestas</h1>
-      <form action="">
-        <label htmlFor="titulo">
-          Titulo
-          <input
-            type="text"
-            name="name"
-            id="titulo"
-            placeholder="Título"
-            onChange={handleForm}
-          />
-        </label>
-        <label htmlFor="description">
-          Descripción
-          <input
-            type="text"
-            name="description"
-            id="description"
-            placeholder="Descripción"
-            onChange={handleForm}
-          />
-        </label>
 
-        {form.questions.map((element, index) => {
-          return (
-            <div key={index}>
-              <select name="question_type" id={index} onChange={handleSelect}>
-                <option value="" defaultValue hidden>
+  const eraseQuestion = (event) => {
+    event.preventDefault()
+    form.questions[event.target.name] = null
+    setForm({
+      ...form,
+      questions: form.questions
+    })
+  }
+  
+  return (
+    <div className='form'>
+      <header>
+      <h1>Creación de encuestas</h1>
+      </header>
+      <form >
+      <div className='title'>
+          <input
+            type='text'
+            name='name'
+            id='titulo'
+            placeholder='Título'
+            onChange={handleForm}
+          />
+          </div>
+          <div className='description'>
+          <input
+            type='text'
+            name='description'
+            id='description'
+            placeholder='Descripción'
+            onChange={handleForm}
+          />
+        </div>
+        {form.questions.map((element, index) => 
+            <div key={index} >
+              {element === null ? null : <div className='questAndBttn'>
+                <div className='questionContainer'>
+                <div className='question'>
+              
+              <select name='question_type' id={index} onChange={handleSelect}>
+                <option value='' defaultValue hidden>
                   Seleccione tipo de pregunta
                 </option>
-                <option value="sm">Selección múltiple</option>
-                <option value="ss">Selección simpe</option>
-                <option value="text">Texto</option>
+                <option value='sm'>Selección múltiple</option>
+                <option value='ss'>Selección simpe</option>
+                <option value='text'>Texto</option>
               </select>
-              <label htmlFor={index}>
-                Pregunta
-                <input
-                  type="text"
-                  name="text"
+
+              <input
+                  type='text'
+                  name='text'
                   id={index}
-                  placeholder="Pregunta"
+                  value={element.text}
+                  placeholder='Pregunta'
                   onChange={handleSelect}
                 />
-              </label>
+              </div>
               
                 <QuestionType
                   type={element.question_type}
@@ -92,13 +104,16 @@ export default function Create({form, setForm}) {
                   form={form}
                   
                 />
+                </div>
+
+              <button className='eraseQuestion' name={index} onClick={eraseQuestion}>x</button>
                 
                 
+                </div> }
             </div>
-          );
-        })}
+        )}
        
-        <button onClick={handleQuestions}>Agregar pregunta</button>
+        <button className='addQuestion' onClick={handleQuestions}> <MdAddCircle/>Agregar pregunta</button>
       </form>
     </div>
   );

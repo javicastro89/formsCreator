@@ -1,0 +1,142 @@
+input, select {
+    background-color: transparent;
+    color: var(--light-text-color);
+}
+
+.form header {
+    background-color: var(--primary-color-dark);
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid var(--border);
+ 
+}
+
+.form form{
+    background-color: var(--container);
+    padding: 10px;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.form .title {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    border: none;
+    margin-bottom: 10px;
+    
+}
+
+
+.form .description {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    border: none;
+    margin-bottom: 10px;
+    
+}
+
+.form input {
+    border: none;
+    border-bottom: 1px solid var(--primary-color-light);
+}
+
+.form .addQuestion {
+    background-color: var(--btn-color);
+    color: var(--text-color);
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 140px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 5px;
+    transition: all 0.3s;
+}
+
+.form .addQuestion:hover{
+    background-color: var(--btn-color-active);
+    cursor: pointer;
+    color: var(--primary-color-dark);
+}
+
+.form .eraseQuestion {
+    background-color: var(--btn-color);
+    color: var(--text-color);
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.form .eraseQuestion:hover{
+    background-color: var(--btn-color-active);
+    cursor: pointer;
+    color: var(--primary-color-dark);
+}
+
+.form .question {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form .question input {
+    margin-bottom: 10px;
+}
+
+.form .question select {
+    border-radius: 5px;
+    padding: 2px;
+    border-color: var(--primary-color-light);
+    
+}
+
+.form .questAndBttn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form .questionContainer {
+    border: 3px solid var(--primary-color);
+    padding: 10px 5px 5px 5px;
+    border-radius: 10px;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.form select:focus{
+    outline: none;
+    border-color: var(--btn-color-active);
+    background-color: var(--btn-color);
+    color: var(--text-color);
+}
+
+.form input:focus {
+    outline: none;
+    border-color: var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+}
+
+.form .question input {
+    margin-bottom: 10px;
+    margin-top: 15px;
+}

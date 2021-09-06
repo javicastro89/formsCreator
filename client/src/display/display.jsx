@@ -12,8 +12,8 @@ export default function Display() {
 
     return (
         <div className='container'>
-            <Create form={form} setForm={setForm} />
-            <Form form={form} />
+            <Create className='create' form={form} setForm={setForm} />
+            <Form className='elotro' form={form} />
         </div>
     )
 }

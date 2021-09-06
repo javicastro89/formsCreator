@@ -1,0 +1,60 @@
+.questionType {
+    margin: 20px;
+}
+
+.questionType .agregarOpción{
+    background-color: var(--btn-color);
+    color: var(--text-color);
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 5px;
+    transition: all 0.3s;
+}
+
+.questionType .agregarOpción:hover{
+    background-color: var(--btn-color-active);
+    cursor: pointer;
+    color: var(--primary-color-dark);  
+}
+
+.questionType .bttn-{
+   background-color: var(--btn-color);
+   color: var(--text-color);
+   border: none;
+   width: 17px;
+   height: 17px;
+   border-radius: 50%;
+   font-size: 11px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   transition: all 0.3s;  
+   align-self: flex-end;
+}
+
+.questionType .bttn-:hover{
+    background-color: var(--btn-color-active);
+    cursor: pointer;
+    color: var(--primary-color-dark);  
+}
+
+.quit {
+    z-index: 0;
+}
+
+
+.questionType .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.questionType .options input {
+    width: 90%;
+}
